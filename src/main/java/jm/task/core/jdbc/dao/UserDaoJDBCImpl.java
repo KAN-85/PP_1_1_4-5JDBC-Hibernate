@@ -31,7 +31,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        try (PreparedStatement preparedStatement = CONNECTION.prepareStatement("INSERT INTO users (name, last_name, age) VALUES (?, ?, ?)")) {
+        try (PreparedStatement preparedStatement = CONNECTION.prepareStatement("INSERT INTO users (name, lastName, age) VALUES (?, ?, ?)")) {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
@@ -57,7 +57,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
         try (ResultSet resultSet = CONNECTION.createStatement().executeQuery("SELECT * FROM users")) {
             while (resultSet.next()) {
-                User user = new User(resultSet.getString("name"), resultSet.getString("last_name"), resultSet.getByte("age"));
+                User user = new User(resultSet.getString("name"), resultSet.getString("lastName"), resultSet.getByte("age"));
                 user.setId(resultSet.getLong("id"));
                 users.add(user);
             }

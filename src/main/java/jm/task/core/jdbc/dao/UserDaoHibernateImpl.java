@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class UserDaoHibernateImpl implements UserDao {
     private String sql;
-    static Logger logger;
+    private final Logger logger = Logger.getLogger("Hibernate log");
 
     @Override
     public void createUsersTable() {

@@ -6,9 +6,12 @@ import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserServiceImpl implements UserService {
     private static final UserDao userDao = new UserDaoHibernateImpl();
+    private final Logger logger = Logger.getLogger("UserService log");
 
     public void createUsersTable() {
         userDao.createUsersTable();
@@ -20,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
     public void saveUser(String name, String lastName, byte age) {
         userDao.saveUser(name, lastName, age);
-        System.out.printf("User с именем – %s %s добавлен в базу данных", name, lastName);
+        logger.log(Level.INFO, String.format("User с именем – %s %s добавлен в базу данных", name, lastName));
     }
 
     public void removeUserById(long id) {
